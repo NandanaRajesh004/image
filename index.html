@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title>Hover to Change Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        img {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .text-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            min-height: 60px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .option {
+            background: #4a6fa5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background: #385d8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hover to Change Content</h2>
+        
+        <img id="displayImage" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Default">
+        
+        <div class="text-box">
+            <p id="displayText">Hover over an option to see content here!</p>
+        </div>
+        
+        <div class="options">
+            <div class="option" data-image="https://images.unsplash.com/photo-1506744038136-46273834b3fb" 
+                 data-text="Beautiful mountain landscape with a lake.">Mountains</div>
+            
+            <div class="option" data-image="https://images.unsplash.com/photo-1441974231531-c6227db76b6e" 
+                 data-text="Dense forest with sunlight filtering through.">Forest</div>
+            
+            <div class="option" data-image="https://images.unsplash.com/photo-1439066615861-d1af74d74000" 
+                 data-text="Stunning beach with turquoise water.">Beach</div>
+            
+            <div class="option" data-image="https://images.unsplash.com/photo-1493246507139-91e8fad9978e" 
+                 data-text="City skyline at night with lights.">City</div>
+        </div>
+    </div>
+
+    <script>
+        const options = document.querySelectorAll('.option');
+        const image = document.getElementById('displayImage');
+        const text = document.getElementById('displayText');
+        
+        const defaultImage = image.src;
+        const defaultText = text.textContent;
+        
+        options.forEach(option => {
+            option.addEventListener('mouseover', () => {
+                image.src = option.getAttribute('data-image');
+                text.textContent = option.getAttribute('data-text');
+            });
+            
+            option.addEventListener('mouseout', () => {
+                image.src = defaultImage;
+                text.textContent = defaultText;
+            });
+        });
+    </script>
+</body>
+</html>
